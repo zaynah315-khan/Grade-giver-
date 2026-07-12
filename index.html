@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Grade Giver</title>
+
+    <link rel="stylesheet" href="./style.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+
+    <div class="container">
+      <h1>🎓 Grade Giver</h1>
+
+      <p class="subtitle">Enter your percentage to discover your grade.</p>
+
+      <input
+        type="number"
+        id="percentage"
+        placeholder="Enter Percentage (0 - 100)"
+        min="0"
+        max="100"
+      />
+
+      <div class="buttons">
+        <button id="checkBtn" onclick="checkGrade()">Check Grade</button>
+
+        <button id="resetBtn" onclick="resetApp()">Check Again</button>
+      </div>
+
+      <div class="progress-section">
+        <div class="progress-circle">
+          <svg width="180" height="180">
+            <circle class="bg" cx="90" cy="90" r="70"></circle>
+
+            <circle
+              id="progress"
+              class="progress"
+              cx="90"
+              cy="90"
+              r="70"
+            ></circle>
+          </svg>
+
+          <div class="percentage-text">
+            <span id="percentValue">0%</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="reportCard" class="report-card">
+        <h2>📋 Report Card</h2>
+
+        <div class="row">
+          <span>Percentage</span>
+          <span id="showPercentage">--</span>
+        </div>
+
+        <div class="row">
+          <span>Grade</span>
+          <span id="grade">--</span>
+        </div>
+
+        <div class="row">
+          <span>Status</span>
+          <span id="status">--</span>
+        </div>
+
+        <div class="row">
+          <span>Performance</span>
+          <span id="performance">--</span>
+        </div>
+      </div>
+
+      <div id="quoteBox" class="quote-box">
+        <h3>💬 Motivation</h3>
+
+        <p id="quote">Believe in yourself and keep learning every day.</p>
+      </div>
+    </div>
+
+    <canvas id="confetti"></canvas>
+
+    <script src="./confetti.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
