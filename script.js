@@ -1,42 +1,42 @@
-// ===============================
-// ELEMENTS
+ // ===============================
+// SELECT ELEMENTS
 // ===============================
 
 const percentageInput = document.getElementById("percentage");
 
 const progressCircle = document.getElementById("progress");
-
 const percentValue = document.getElementById("percentValue");
 
 const reportCard = document.getElementById("reportCard");
-
 const quoteBox = document.getElementById("quoteBox");
 
 const showPercentage = document.getElementById("showPercentage");
-
 const grade = document.getElementById("grade");
-
 const status = document.getElementById("status");
-
 const performance = document.getElementById("performance");
-
 const quote = document.getElementById("quote");
-
 
 // ===============================
 // ENTER KEY SUPPORT
 // ===============================
 
-percentageInput.addEventListener("keypress", function (event) {
+percentageInput.addEventListener("keydown", function (event) {
 
     if (event.key === "Enter") {
-
         checkGrade();
-
     }
 
 });
 
+// ===============================
+// PROGRESS CIRCLE
+// ===============================
+
+const radius = 70;
+const circumference = 2 * Math.PI * radius;
+
+progressCircle.style.strokeDasharray = circumference;
+progressCircle.style.strokeDashoffset = circumference;
 
 // ===============================
 // CHECK GRADE
@@ -44,56 +44,39 @@ percentageInput.addEventListener("keypress", function (event) {
 
 function checkGrade() {
 
-    let percentage = Number(percentageInput.value);
+    const percentage = Number(percentageInput.value);
 
     // Validation
 
-    if (percentageInput.value === "") {
+    if (percentageInput.value.trim() === "") {
 
         alert("Please enter your percentage.");
-
         percentageInput.focus();
-
         return;
 
     }
 
     if (percentage < 0 || percentage > 100) {
 
-        alert("Percentage must be between 0 and 100.");
-
+        alert("Please enter a percentage between 0 and 100.");
         percentageInput.focus();
-
         return;
 
     }
 
-    // Show Result Boxes
-
     reportCard.style.display = "block";
-
     quoteBox.style.display = "block";
 
+    // Update Percentage
 
-    // Percentage
+    showPercentage.textContent = percentage + "%";
+    percentValue.textContent = percentage + "%";
 
-    showPercentage.innerHTML = percentage + "%";
-
-    percentValue.innerHTML = percentage + "%";
-
-
-    // Progress Ring Animation
-
-    const radius = 70;
-
-    const circumference = 2 * Math.PI * radius;
-
-    progressCircle.style.strokeDasharray = circumference;
+    // Progress Circle
 
     const offset = circumference - (percentage / 100) * circumference;
 
     progressCircle.style.strokeDashoffset = offset;
-
 
     // Variables
 
@@ -101,30 +84,27 @@ function checkGrade() {
     let userStatus = "";
     let userPerformance = "";
     let userQuote = "";
-    let color = "#FFD464";
 
+    let circleColor = "";
+    let cardColor = "";
 
-    // ==========================
-    // IF ELSE IF
-    // ==========================
+    // ===============================
+    // IF ELSE
+    // ===============================
 
     if (percentage >= 90) {
 
         userGrade = "A+";
         userStatus = "PASS ✅";
         userPerformance = "Outstanding";
-        userQuote = "Success is the result of hard work and consistency.";
+        userQuote = "Excellent work! Keep reaching for new heights.";
 
-        color = "#FFD700";
-
-        // Confetti
+        circleColor = "#FFD464";
+        cardColor = "#B0183D";
 
         if (typeof startConfetti === "function") {
-
             startConfetti();
-
             setTimeout(stopConfetti, 4000);
-
         }
 
     }
@@ -134,9 +114,10 @@ function checkGrade() {
         userGrade = "A";
         userStatus = "PASS ✅";
         userPerformance = "Excellent";
-        userQuote = "Great job! Keep aiming higher.";
+        userQuote = "Amazing! Keep up the great work.";
 
-        color = "#2ECC71";
+        circleColor = "#FFD464";
+        cardColor = "#C62852";
 
     }
 
@@ -145,9 +126,10 @@ function checkGrade() {
         userGrade = "B";
         userStatus = "PASS ✅";
         userPerformance = "Very Good";
-        userQuote = "Every step forward is progress.";
+        userQuote = "You're doing great. Keep improving every day.";
 
-        color = "#3498DB";
+        circleColor = "#FCEDD8";
+        cardColor = "#E23C64";
 
     }
 
@@ -156,90 +138,89 @@ function checkGrade() {
         userGrade = "C";
         userStatus = "PASS ✅";
         userPerformance = "Good";
+        userQuote = "Good effort! Keep practicing.";
 
-        userQuote = "Keep practicing and you'll achieve even more.";
-
-        color = "#F39C12";
+        circleColor = "#FCEDD8";
+        cardColor = "#FF5E5E";
 
     }
 
     else if (percentage >= 50) {
 
         userGrade = "D";
-
         userStatus = "PASS ✅";
-
         userPerformance = "Needs Improvement";
+        userQuote = "Don't stop now. Every step counts.";
 
-        userQuote = "Don't stop here. You can do much better next time.";
-
-        color = "#E67E22";
+        circleColor = "#FCEDD8";
+        cardColor = "#FF8A65";
 
     }
 
     else {
 
         userGrade = "F";
-
         userStatus = "FAIL ❌";
-
         userPerformance = "Better Luck Next Time";
+        userQuote = "Failure is not the end. Learn, improve, and come back stronger.";
 
-        userQuote = "Failure is not the opposite of success; it's part of success.";
-
-        color = "#E74C3C";
+        circleColor = "#FCEDD8";
+        cardColor = "#D84315";
 
     }
 
+    // ===============================
+    // DISPLAY RESULT
+    // ===============================
 
-    // Show Data
+    grade.textContent = userGrade;
+    status.textContent = userStatus;
+    performance.textContent = userPerformance;
+    quote.textContent = userQuote;
 
-    grade.innerHTML = userGrade;
+    // Grade Style
 
-    status.innerHTML = userStatus;
+    grade.style.color = "#FFD464";
+    grade.style.fontSize = "2rem";
+    grade.style.fontWeight = "700";
 
-    performance.innerHTML = userPerformance;
+    // Circle Color
 
-    quote.innerHTML = userQuote;
+    progressCircle.style.stroke = circleColor;
 
+    // Report Card Theme
 
-    // Change Colors
+    reportCard.style.background = `linear-gradient(135deg, ${cardColor}, #B0183D)`;
 
-    grade.style.color = color;
-
-    progressCircle.style.stroke = color;
+    reportCard.style.boxShadow = `0 15px 35px ${cardColor}55`;
 
 }
 
-
-
 // ===============================
-// RESET
+// RESET APP
 // ===============================
 
 function resetApp() {
 
     percentageInput.value = "";
 
-    percentValue.innerHTML = "0%";
+    percentValue.textContent = "0%";
 
-    showPercentage.innerHTML = "--";
+    showPercentage.textContent = "--";
+    grade.textContent = "--";
+    status.textContent = "--";
+    performance.textContent = "--";
 
-    grade.innerHTML = "--";
-
-    status.innerHTML = "--";
-
-    performance.innerHTML = "--";
-
-    quote.innerHTML = "Believe in yourself and keep learning every day.";
+    quote.textContent = "Believe in yourself and keep learning every day.";
 
     reportCard.style.display = "none";
-
     quoteBox.style.display = "none";
 
-    progressCircle.style.strokeDashoffset = 440;
-
+    progressCircle.style.strokeDashoffset = circumference;
     progressCircle.style.stroke = "#FFD464";
+
+    reportCard.style.background = "rgba(176,24,61,.90)";
+    reportCard.style.boxShadow = "0 15px 35px rgba(0,0,0,.18)";
 
     percentageInput.focus();
 

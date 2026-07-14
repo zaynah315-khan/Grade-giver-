@@ -1,6 +1,6 @@
- /* ==========================
-   GOOGLE FONT & RESET
-========================== */
+  /* ==========================================
+   RESET & GLOBAL STYLES
+========================================== */
 
 *{
     margin:0;
@@ -20,25 +20,26 @@ body{
 
     padding:40px 20px;
 
-    overflow-y:auto;
     overflow-x:hidden;
+    overflow-y:auto;
 
     position:relative;
 
     background:linear-gradient(
         135deg,
-        #FCEDD8,
-        #FFD464,
-        #FF5E5E,
-        #E23C64,
-        #B0183D
+        #FCEDD8 0%,
+        #FFD464 25%,
+        #FF8A65 55%,
+        #E23C64 80%,
+        #B0183D 100%
     );
 
 }
 
-/* ==========================
-      FLOATING BLOBS
-========================== */
+
+/* ==========================================
+        FLOATING BLOBS
+========================================== */
 
 .blob{
 
@@ -48,21 +49,21 @@ body{
 
     filter:blur(90px);
 
-    z-index:-1;
-
     animation:float 10s ease-in-out infinite;
+
+    z-index:-1;
 
 }
 
 .blob1{
 
-    width:250px;
-    height:250px;
-
-    top:-70px;
-    left:-70px;
+    width:260px;
+    height:260px;
 
     background:rgba(255,255,255,.35);
+
+    top:-80px;
+    left:-80px;
 
 }
 
@@ -71,12 +72,12 @@ body{
     width:220px;
     height:220px;
 
+    background:rgba(255,212,100,.30);
+
     right:-60px;
-    bottom:20px;
+    bottom:40px;
 
-    background:rgba(255,212,100,.35);
-
-    animation-delay:2s;
+    animation-delay:3s;
 
 }
 
@@ -85,30 +86,35 @@ body{
     width:180px;
     height:180px;
 
+    background:rgba(255,94,94,.30);
+
     left:15%;
     bottom:35%;
 
-    background:rgba(255,94,94,.30);
-
-    animation-delay:4s;
+    animation-delay:5s;
 
 }
 
 @keyframes float{
 
     0%,100%{
+
         transform:translateY(0);
+
     }
 
     50%{
+
         transform:translateY(-25px);
+
     }
 
 }
 
-/* ==========================
-        MAIN CARD
-========================== */
+
+/* ==========================================
+          MAIN CARD
+========================================== */
 
 .container{
 
@@ -119,31 +125,33 @@ body{
 
     padding:35px;
 
+    border-radius:28px;
+
     position:relative;
 
     z-index:2;
 
     text-align:center;
 
-    border-radius:25px;
-
-    background:rgba(255,255,255,.18);
+    background:rgba(255,255,255,.22);
 
     backdrop-filter:blur(18px);
 
-    border:1px solid rgba(255,255,255,.3);
+    border:1px solid rgba(255,255,255,.35);
 
-    box-shadow:0 20px 40px rgba(0,0,0,.18);
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.18);
 
 }
 
-/* ==========================
-        HEADINGS
-========================== */
+
+/* ==========================================
+           HEADING
+========================================== */
 
 h1{
 
-    color:#fff;
+    color:#ffffff;
 
     font-size:2.2rem;
 
@@ -155,17 +163,18 @@ h1{
 
     color:white;
 
-    opacity:.95;
+    line-height:1.6;
 
     margin-bottom:25px;
 
-    line-height:1.6;
+    opacity:.95;
 
 }
 
-/* ==========================
-          INPUT
-========================== */
+
+/* ==========================================
+             INPUT
+========================================== */
 
 input{
 
@@ -177,31 +186,42 @@ input{
 
     outline:none;
 
-    border-radius:14px;
-
-    font-size:16px;
-
-    margin-bottom:20px;
-
-    text-align:center;
+    border-radius:15px;
 
     background:white;
 
     color:#B0183D;
 
+    font-size:16px;
+
     font-weight:600;
+
+    text-align:center;
+
+    margin-bottom:22px;
+
+    transition:.3s;
+
+}
+
+input::placeholder{
+
+    color:#999;
 
 }
 
 input:focus{
 
+    transform:scale(1.02);
+
     box-shadow:0 0 15px rgba(255,255,255,.6);
 
 }
 
-/* ==========================
-          BUTTONS
-========================== */
+
+/* ==========================================
+            BUTTONS
+========================================== */
 
 .buttons{
 
@@ -221,13 +241,13 @@ button{
 
     border:none;
 
-    border-radius:14px;
+    border-radius:15px;
+
+    cursor:pointer;
 
     font-size:16px;
 
     font-weight:600;
-
-    cursor:pointer;
 
     transition:.3s;
 
@@ -265,9 +285,10 @@ button{
 
 }
 
-/* ==========================
-      PROGRESS CIRCLE
-========================== */
+
+/* ==========================================
+        PROGRESS CIRCLE
+========================================== */
 
 .progress-section{
 
@@ -283,21 +304,18 @@ button{
 
     position:relative;
 
-    width:180px;
-    height:180px;
+    width:clamp(130px,35vw,180px);
 
-    display:flex;
+    aspect-ratio:1;
 
-    justify-content:center;
-
-    align-items:center;
+    margin:auto;
 
 }
 
-svg{
+.progress-circle svg{
 
-    width:180px;
-    height:180px;
+    width:100%;
+    height:100%;
 
     display:block;
 
@@ -311,7 +329,7 @@ svg{
 
     fill:none;
 
-    stroke:rgba(255,255,255,.3);
+    stroke:rgba(255,255,255,.30);
 
     stroke-width:12;
 
@@ -331,7 +349,7 @@ svg{
 
     stroke-dashoffset:440;
 
-    transition:1s;
+    transition:1.2s ease;
 
 }
 
@@ -347,17 +365,16 @@ svg{
 
     align-items:center;
 
-    font-size:2rem;
-
     color:white;
 
-    font-weight:bold;
+    font-size:clamp(1.4rem,4vw,2rem);
+
+    font-weight:700;
 
 }
-
-/* ==========================
-       REPORT CARD
-========================== */
+/* ==========================================
+           REPORT CARD
+========================================== */
 
 .report-card{
 
@@ -365,21 +382,29 @@ svg{
 
     margin-top:20px;
 
-    padding:20px;
+    padding:22px;
 
-    border-radius:18px;
+    border-radius:20px;
 
-    background:rgba(255,255,255,.18);
+    background:rgba(176,24,61,.90);
 
-    color:white;
+    color:#fff;
 
-    animation:fade .5s;
+    border:1px solid rgba(255,255,255,.25);
+
+    box-shadow:0 12px 30px rgba(0,0,0,.18);
+
+    animation:fade .5s ease;
 
 }
 
 .report-card h2{
 
-    margin-bottom:15px;
+    color:#FFD464;
+
+    margin-bottom:18px;
+
+    font-size:1.4rem;
 
 }
 
@@ -389,21 +414,34 @@ svg{
 
     justify-content:space-between;
 
-    padding:10px 0;
+    align-items:center;
+
+    padding:12px 0;
 
     border-bottom:1px solid rgba(255,255,255,.15);
+
+    font-size:15px;
+
+    font-weight:500;
 
 }
 
 .row:last-child{
 
-    border:none;
+    border-bottom:none;
 
 }
 
-/* ==========================
-      QUOTE BOX
-========================== */
+.row span:last-child{
+
+    font-weight:600;
+
+}
+
+
+/* ==========================================
+            QUOTE BOX
+========================================== */
 
 .quote-box{
 
@@ -411,19 +449,25 @@ svg{
 
     margin-top:20px;
 
-    padding:18px;
+    padding:20px;
 
-    border-radius:18px;
+    border-radius:20px;
 
-    background:rgba(255,255,255,.18);
+    background:rgba(255,255,255,.95);
 
-    color:white;
+    color:#333;
 
-    animation:fade .6s;
+    border:1px solid rgba(0,0,0,.08);
+
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+    animation:fade .6s ease;
 
 }
 
 .quote-box h3{
+
+    color:#B0183D;
 
     margin-bottom:10px;
 
@@ -433,11 +477,14 @@ svg{
 
     line-height:1.7;
 
+    font-size:.95rem;
+
 }
 
-/* ==========================
-       CONFETTI
-========================== */
+
+/* ==========================================
+            CONFETTI
+========================================== */
 
 #confetti{
 
@@ -455,9 +502,10 @@ svg{
 
 }
 
-/* ==========================
-        ANIMATION
-========================== */
+
+/* ==========================================
+            ANIMATIONS
+========================================== */
 
 @keyframes fade{
 
@@ -479,33 +527,81 @@ svg{
 
 }
 
-/* ==========================
-      RESPONSIVE
-========================== */
+
+/* ==========================================
+          TABLET RESPONSIVE
+========================================== */
 
 @media (max-width:768px){
 
+    body{
+
+        padding:30px 15px;
+
+    }
+
     .container{
 
-        max-width:380px;
+        max-width:400px;
 
         padding:28px;
 
     }
 
+    h1{
+
+        font-size:2rem;
+
+    }
+
+    .subtitle{
+
+        font-size:.92rem;
+
+    }
+
+    button{
+
+        font-size:15px;
+
+        padding:13px;
+
+    }
+
+    .report-card{
+
+        padding:18px;
+
+    }
+
+    .quote-box{
+
+        padding:18px;
+
+    }
+
 }
+
+
+/* ==========================================
+          MOBILE RESPONSIVE
+========================================== */
 
 @media (max-width:480px){
 
     body{
 
-        padding:20px 15px;
+        padding:20px 12px;
 
     }
 
     .container{
 
+        width:100%;
+
         padding:22px;
+
+        border-radius:22px;
 
     }
 
@@ -515,40 +611,102 @@ svg{
 
     }
 
+    .subtitle{
+
+        font-size:.9rem;
+
+        margin-bottom:20px;
+
+    }
+
     .buttons{
 
         flex-direction:column;
 
+        gap:10px;
+
     }
- .progress-circle{
-    position: relative;
-    width: clamp(120px, 35vw, 180px);
-    aspect-ratio: 1;
-    margin: auto;
+
+    button{
+
+        width:100%;
+
+    }
+
+    .report-card{
+
+        background:#B0183D;
+
+        color:#fff;
+
+    }
+
+    .quote-box{
+
+        background:#fff;
+
+        color:#333;
+
+    }
+
+    .row{
+
+        font-size:14px;
+
+    }
+
+    .report-card h2{
+
+        font-size:1.2rem;
+
+    }
+
+    .quote-box p{
+
+        font-size:.9rem;
+
+    }
+
 }
 
-.progress-circle svg{
-    width: 100%;
-    height: 100%;
-    display: block;
-    transform: rotate(-90deg);
-    transform-origin: center;
-}
 
-.percentage-text{
-    position: absolute;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: clamp(1.3rem, 4vw, 2rem);
-    font-weight: 700;
-}
+/* ==========================================
+          SMALL MOBILE
+========================================== */
 
-    .percentage-text{
+@media (max-width:360px){
 
-        font-size:1.5rem;
+    .container{
+
+        padding:18px;
+
+    }
+
+    h1{
+
+        font-size:1.6rem;
+
+    }
+
+    .subtitle{
+
+        font-size:.85rem;
+
+    }
+
+    .row{
+
+        flex-direction:column;
+
+        gap:5px;
+
+        text-align:center;
+
+    }
+
+    .row span{
+
+        display:block;
 
     }
 
